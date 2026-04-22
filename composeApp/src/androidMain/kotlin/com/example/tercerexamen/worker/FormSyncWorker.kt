@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.tercerexamen.service.FormSyncService
+import kotlin.Result.Companion.success
 
 class FormSyncWorker(
     context: Context,
@@ -14,7 +15,7 @@ class FormSyncWorker(
         return try {
             val syncService = FormSyncService.getInstance(applicationContext)
             syncService.syncFormData()
-            Result.success()
+            success()
         } catch (e: Exception) {
             e.printStackTrace()
             Result.retry()
