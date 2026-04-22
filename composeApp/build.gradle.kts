@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    kotlin("kapt")
 }
 
 kotlin {
@@ -29,6 +30,11 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.room.runtime)
+            implementation(libs.androidx.room.ktx)
+            implementation(libs.androidx.work.runtime)
+            implementation(libs.androidx.lifecycle.process)
+            implementation(libs.kotlin.serialization.json)
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
