@@ -3,17 +3,17 @@ package com.example.tercerexamen.worker
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.example.tercerexamen.service.EventSyncService
+import com.example.tercerexamen.service.FormSyncService
 
-class EventSyncWorker(
+class FormSyncWorker(
     context: Context,
     params: WorkerParameters
 ) : CoroutineWorker(context, params) {
 
     override suspend fun doWork(): Result {
         return try {
-            val syncService = EventSyncService.getInstance(applicationContext)
-            syncService.syncUnsyncedEvents()
+            val syncService = FormSyncService.getInstance(applicationContext)
+            syncService.syncFormData()
             Result.success()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -21,5 +21,4 @@ class EventSyncWorker(
         }
     }
 }
-
 

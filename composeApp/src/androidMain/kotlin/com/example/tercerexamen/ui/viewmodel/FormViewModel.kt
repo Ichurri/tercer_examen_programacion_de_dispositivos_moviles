@@ -6,12 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tercerexamen.data.database.DatabaseProvider
 import com.example.tercerexamen.data.entity.FormAutosave
+import com.example.tercerexamen.service.FormSyncService
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class FormViewModel(private val context: Context) : ViewModel() {
     val formData = mutableStateOf("")
     private val db = DatabaseProvider.getInstance(context)
+    private val syncService = FormSyncService.getInstance(context)
 
     init {
         loadFormData()
@@ -66,7 +68,8 @@ class FormViewModel(private val context: Context) : ViewModel() {
                     synced = false
                 )
                 db.formAutosaveDao().saveForm(form)
-                // Aquí se podría sincronizar con Firebase más tarde
+                // Sincronizar con Firebase
+                syncService.syncFormData()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
