@@ -35,9 +35,7 @@ kotlin {
             implementation(libs.androidx.work.runtime)
             implementation(libs.androidx.lifecycle.process)
             implementation(libs.kotlin.serialization.json)
-            implementation(platform(libs.firebase.bom))
             implementation(libs.firebase.database)
-            implementation(libs.firebase.common)
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
